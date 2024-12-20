@@ -1,6 +1,8 @@
 package mocks
 
 import (
+	"time"
+
 	"snippetbox.lilbee/internal/models"
 )
 
@@ -29,4 +31,17 @@ import (
     default:
         return false, nil
     }
+ }
+
+ func (m *UserModel) Get(id int) (models.User, error) {
+    if id == 1 {
+        u := models.User{
+            ID: 1,
+            Name: "Alice",
+            Email: "alice@example.com",
+            Created: time.Now(),
+        }
+        return u, nil
+    }
+    return models.User{}, models.ErrNoRecord
  }
