@@ -45,3 +45,13 @@ import (
     }
     return models.User{}, models.ErrNoRecord
  }
+
+ func (m *UserModel) PasswordUpdate(id int, currentPassword, newPassword string) error {
+    if id == 1 {
+        if currentPassword != "pa$$word" {
+        return models.ErrInvalidCredentials
+        }
+        return nil
+    }
+    return models.ErrNoRecord
+}
